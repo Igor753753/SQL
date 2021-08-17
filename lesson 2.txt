@@ -1,0 +1,79 @@
+[client]
+user=root
+password=****
+mysql> CREATE DATABASE example;
+mysql> USE example;
+Query OK, 1 row affected (0.82 sec)
+
+Database changed
+
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| example            |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.02 sec)
+mysql> CREATE TABLE users(id SERIAL, name VARCHAR(255) NOT NULL UNIQUE);
+mysql> SHOW  TABLES;
++-------------------+
+| Tables_in_example |
++-------------------+
+| users             |
++-------------------+
+1 row in set (0.00 sec)
+mysql> mysqldump example > example.sql
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| example            |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sample             |
+| sys                |
++--------------------+
+6 rows in set (0.01 sec)
+C:\Users\Игорь> mysqldump -u root -p example
+
+DROP TABLE IF EXISTS `users`;
+
+CREATE TABLE `users` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL COMMENT '╨С╨░╨╖╨░ ╨┤╨░╨╜╨╜╤Л╤Е',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`)--
+-- Dumping data for table `users`
+--
+
+
+
+-- Dump completed on 2021-08-16 22:24:57
+C:\Users\Игорь>mysqldump -u root -p example > example.sql
+
+
+C:\Users\Игорь>dir
+6.08.2021  22:30             1 974 example.sql
+C:\Users\Игорь>mysql -u root -p sample < example.sql
+C:\Users\Игорь>mysql -u root -p
+mysql> USE sample;
+Database changed
+mysql> SHOW TABLES;
++------------------+
+| Tables_in_sample |
++------------------+
+| users            |
++------------------+
+1 row in set (0.00 sec)
+C:\Users\Игорь>mysqldump -u root -p --opt --where="1 limit 100" mysql help_keyword > first_100_rows_help_keyword.sql
+mysql> USE mysql;
+Database changed
+mysql> SHOW TABLES;
+C:\Users\Игорь>dir
+16.08.2021  22:44             3 679 first_100_rows_help_keyword.sql
+
